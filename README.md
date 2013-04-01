@@ -3,7 +3,7 @@ ZendDbBundle
 
 [![Build Status](https://travis-ci.org/Haehnchen/ZendDbBundle.png?branch=master)](https://travis-ci.org/Haehnchen/ZendDbBundle)
 
-Bundle that wraps Zend/Db to Symfony2 and Doctrine, so that you can use your Entity and Repository names as Table alias
+Bundle that wraps Zend/Db to Symfony2 and Doctrine, so that you can use your Entity and Repository names as Table alias.
 
 
 ## Installation
@@ -87,6 +87,7 @@ espend\HomeBundle\Entity\HomeworkFood -> homework_food.id
 ### SQL Query Examples
 
 #### Select
+Result set from Database to demonstrate the select statemets
 ``` js
 [
    {
@@ -100,7 +101,6 @@ espend\HomeBundle\Entity\HomeworkFood -> homework_food.id
 ]
 ```
 
-#### Select
 ``` php
 $select = $this->getZend()->getQueryBuilder()->select('espendHomeBundle:Homework');
 $select->where(array(
@@ -110,6 +110,12 @@ $select->where(array(
 $this->getZend()->fetchArray($select); // return  [{id:1, name:name}, {id:2, name:name2}]
 $this->getZend()->fetchColumn($select); // return  {id:1, name:name}
 $this->getZend()->fetchField($select); // return 1
+```
+
+You can also set alias to select statements, if non provided its generated on entity name
+``` php
+$this->getZend()->getQueryBuilder()->select(array('no_homework' =>'espendHomeBundle:Homework'));
+$this->getZend()->getQueryBuilder()->select(array('nice_homework' =>'espend\HomeBundle\Entity\Homework'));
 ```
 
 #### Update
