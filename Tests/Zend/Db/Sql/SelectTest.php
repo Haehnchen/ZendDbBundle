@@ -15,7 +15,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 		$this->class_meta = new ClassMetadata('Test:Test');
 		$this->class_meta->setPrimaryTable(array('name' => 'my_test'));
 
-		$this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
+		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
 		$this->em->expects($this->any())->method('getClassMetadata')->will($this->returnValue($this->class_meta));
 	}
 
@@ -45,7 +45,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 		$this->class_meta = new ClassMetadata('Test\Entity\Test');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
-		$this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
+		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
 		$this->em->expects($this->any())->method('getClassMetadata')->will($this->returnValue($this->class_meta));
 
 		$select = new Select('Test\Entity\Test', $this->em);
@@ -62,7 +62,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 		$this->class_meta = new ClassMetadata('Test\Entity\Test');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
-		$this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
+		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
 		$this->em->expects($this->any())->method('getClassMetadata')->will($this->returnValue($this->class_meta));
 
 		$select = new Select(array('Test\Entity\Test' => 'table_alias'), $this->em);
@@ -79,7 +79,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 		$this->class_meta = new ClassMetadata('Test\Entity\TestBla');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
-		$this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
+		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
 		$this->em->expects($this->any())->method('getClassMetadata')->will($this->returnValue($this->class_meta));
 
 		$select = new Select('table_name', $this->em);
@@ -98,7 +98,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 		$this->class_meta = new ClassMetadata('Test\Entity\TestBla');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
-		$this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
+		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
 		$this->em->expects($this->any())->method('getClassMetadata')->will($this->returnValue($this->class_meta));
 
 		$select = new Select('table_name', $this->em);
@@ -117,7 +117,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 		$this->class_meta = new ClassMetadata('Test\Entity\TestBla');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
-		$this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
+		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
 		$this->em->expects($this->any())->method('getClassMetadata')->will($this->returnValue($this->class_meta));
 
 		$select = new Select('table_name', $this->em);

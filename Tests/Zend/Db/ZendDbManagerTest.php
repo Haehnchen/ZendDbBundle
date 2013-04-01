@@ -13,7 +13,7 @@ class ZendDbManagerTest extends \PHPUnit_Framework_TestCase {
 	private $manager;
 
 	function setUp() {
-		$em = $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
+		$em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
 		$mysql = $this->getMockBuilder('Zend\Db\Adapter\Driver\Mysqli\Mysqli')->disableOriginalConstructor()->getMock();
 
 		$this->manager = new ZendDbManager($em);

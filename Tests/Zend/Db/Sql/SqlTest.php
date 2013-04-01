@@ -22,7 +22,7 @@ class SqlTest extends \PHPUnit_Framework_TestCase {
 		$this->class_meta = new ClassMetadataInfo('Test\Test');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
-		$this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
+		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
 		$this->em->expects($this->any())->method('getClassMetadata')->will($this->returnValue($this->class_meta));
 
 		$platform = $this->getMockBuilder('Zend\Db\Adapter\Platform\PlatformInterface')->disableOriginalConstructor()->getMock();
@@ -51,7 +51,7 @@ class SqlTest extends \PHPUnit_Framework_TestCase {
 		$this->class_meta = new ClassMetadataInfo('Test\TestCamelize');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
-		$this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
+		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
 		$this->em->expects($this->any())->method('getClassMetadata')->will($this->returnValue($this->class_meta));
 
 		$select = new Sql($this->adapter);
