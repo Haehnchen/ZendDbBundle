@@ -15,7 +15,7 @@ Installation is a quick 2 step process:
 
 ### Step 1: Download ZendDbBundle using composer
 
-Add ZendDbBundle in your composer.json:
+Add ZendDbBundle in your composer.json (see versions: [espend/zend-db-bundle](https://packagist.org/packages/espend/zend-db-bundle)):
 
 ```js
 {
@@ -24,8 +24,6 @@ Add ZendDbBundle in your composer.json:
     }
 }
 ```
-
-See available Verion: [espend/zend-db-bundle](https://packagist.org/packages/espend/zend-db-bundle)
 
 Now tell composer to download the bundle by running the command:
 
@@ -51,11 +49,15 @@ public function registerBundles()
     );
 }
 ```
+## Services
+All Services are generated on CompilerPass on the Symfony2 database parameters and attached to `zend.db.manager`. 
+Since the manager supports more the one connection `getManager()` will hold all possible connection. If none Parameter give the `default` connection will used.
+There are also some adapter services depending on connection `zend.db.adapter.<name>`, if need to call it without manager. The default adapter is alway accessable on `zend.db.adapter`
 
 ## Basic Usage
 
-For better usagage and autocomplete put this somewhere where you have a container.
-You should only use this services, because it is auto configured to use platform and driver on symfony configurations
+For better usagage and autocomplete put this function somewhere where you have a container.
+You should only use this services, because it is auto configured to use platform and driver on container parameters
 
 ``` php
 /**
