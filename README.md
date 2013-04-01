@@ -158,7 +158,7 @@ $select->join('espendHomeBundle:HomeworkFood', 'homework.id = homework_food.id')
 JOINs also supports alias overwrite
 ``` php
 $select = $this->getZend()->getQueryBuilder()->select('espendHomeBundle:Homework');
-$select->join(array('user' => 'espendHomeBundle:HomeworkFood'), 'user.id = homework_food.id');
+$select->join(array('user' => 'espendHomeBundle:HomeworkFood'), 'user.id = homework.id');
 
 ```
 
