@@ -1,4 +1,157 @@
 ZendDbBundle
 ============
 
-Bundle that wraps ZendDb to Symfony2 and Doctrine
+[![Build Status](https://travis-ci.org/Haehnchen/ZendDbBundle.png?branch=master)](https://travis-ci.org/Haehnchen/ZendDbBundle)
+
+Bundle that wraps Zend/Db to Symfony2 and Doctrine, so that you can use your Entity and Repository names as Table alias
+
+
+## Installation
+
+Installation is a quick 2 step process:
+
+1. Download ZendDbBundle using composer
+2. Enable the Bundle
+
+### Step 1: Download ZendDbBundle using composer
+
+Add ZendDbBundle in your composer.json:
+
+```js
+{
+    "require": {
+        "espend/zend-db-bundle": "dev-master"
+    }
+}
+```
+
+See available Verion: [espend/zend-db-bundle](https://packagist.org/packages/espend/zend-db-bundle)
+
+Now tell composer to download the bundle by running the command:
+
+``` bash
+$ php composer.phar update espend/zend-db-bundle
+```
+
+Composer will install the bundle to your project's `vendor` directory.
+
+### Step 2: Enable the bundle
+
+Enable the bundle in the kernel:
+
+``` php
+<?php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new espend\ZendDbBundle\espendZendDbBundle(),
+    );
+}
+```
+
+## Basic Usage
+
+For better usagage and autocomplete put this somewhere where you have a container.
+You should only use this services, because it is auto configured to use platform and driver on symfony configurations
+
+``` php
+/**
+ * @return \espend\ZendDbBundle\Zend\Db\ZendDbConnection
+ */
+private function getZend() {
+  return $this->container->get('zend.db.manager')->getManager();
+}
+```
+### Doctrine Repositories and Table names
+
+All Doctrine Entity names can used on top zend/db and will resloved on Doctrine before query the database
+```
+espendHomeBundle:Homework
+espend\HomeBundle\Entity\Homework
+espend\HomeBundle\Entity\HomeworkFood
+```
+
+Tables alias names are generated on entity names so:
+```
+espendHomeBundle:HomeworkFood -> homework_food.id
+espendHomeBundle:Homework -> homework.id
+espend\HomeBundle\Entity\HomeworkFood -> homework_food.id
+```
+
+
+### SQL Query Examples
+
+#### Select
+``` js
+[
+   {
+      "id":"1",
+      "name":"name"
+   }
+   {
+      "id":"2",
+      "name":"name2"
+   }   
+]
+```
+
+#### Select
+``` php
+$select = $this->getZend()->getQueryBuilder()->select('espendHomeBundle:Homework');
+$select->where(array(
+  'status' => 0,
+  'type' => 'cleanup',
+));
+$this->getZend()->fetchArray($select); // return  [{id:1, name:name}, {id:2, name:name2}]
+$this->getZend()->fetchColumn($select); // return  {id:1, name:name}
+$this->getZend()->fetchField($select); // return 1
+```
+
+#### Update
+``` php
+$update = $this->getZend()->getQueryBuilder()->update('opwocoApptitanCoreBundle:JobQueue');
+$update->set(array(
+  'type' => 'todo',
+));
+$update->where(array(
+  'status' => 0,
+));
+$this->getZend()->execute($update);
+```
+
+#### Insert
+``` php
+$insert = $this->getZend()->getQueryBuilder()->insert('opwocoApptitanCoreBundle:JobQueue');
+$insert->values(array(
+  'status' => 1,
+  'type' => 'cleanup',
+));
+$this->getZend()->execute($insert);
+```
+
+#### Delete
+``` php
+$delete = $this->getZend()->getQueryBuilder()->delete('espendHomeBundle:Homework');
+$delete->where(array(
+  'status' => 0,
+  'type' => 'cleanup',
+));
+$this->getZend()->execute($delete);
+```
+
+#### Join
+``` php
+$select = $this->getZend()->getQueryBuilder()->select('espendHomeBundle:Homework');
+$select->join('espendHomeBundle:HomeworkFood', 'homework.id = homework_food.id');
+```
+JOINs also supports alias overwrite
+``` php
+$select = $this->getZend()->getQueryBuilder()->select('espendHomeBundle:Homework');
+$select->join(array('user' => 'espendHomeBundle:HomeworkFood'), 'user.id = homework_food.id');
+
+```
+
+For more syntax example see: [Zend\Db\Sql](http://framework.zend.com/manual/2.1/en/modules/zend.db.sql.html)
