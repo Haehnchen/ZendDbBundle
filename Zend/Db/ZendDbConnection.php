@@ -31,9 +31,8 @@ class ZendDbConnection {
 		return $this->sql;
 	}
 
-	function getQueryMode($mode = 'EXECUTE') {
-		$adapter = $this->adapter;
-		return $mode == 'EXECUTE' ? $adapter::QUERY_MODE_EXECUTE : $adapter::QUERY_MODE_PREPARE;
+	function getQueryMode($mode = Adapter::QUERY_MODE_EXECUTE) {
+		return $mode == Adapter::QUERY_MODE_EXECUTE ? Adapter::QUERY_MODE_EXECUTE : Adapter::QUERY_MODE_PREPARE;
 	}
 
 	function fetchArray(SqlInterface $sql) {
