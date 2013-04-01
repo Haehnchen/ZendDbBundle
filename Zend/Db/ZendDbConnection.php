@@ -66,7 +66,7 @@ class ZendDbConnection {
 			$select = $this->sql->getSqlStringForSqlObject($select);
 		}
 
-		return $this->adapter->query($select);
+		return $this->adapter->query($select, $this->getQueryMode());
 	}
 
 	/**
