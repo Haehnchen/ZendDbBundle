@@ -2,7 +2,7 @@
 
 namespace espend\ZendDbBundle\Tests\Zend\Db\Sql;
 
-use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use espend\ZendDbBundle\Zend\Db\Sql\Select;
 use Zend\Db\Sql\Predicate\Expression;
 
@@ -12,7 +12,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 	protected $em;
 
 	function setUp() {
-		$this->class_meta = new ClassMetadata('Test:Test');
+		$this->class_meta = new ClassMetadataInfo('Test:Test');
 		$this->class_meta->setPrimaryTable(array('name' => 'my_test'));
 
 		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
@@ -42,7 +42,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 	 */
 	function testEqualAlias() {
 
-		$this->class_meta = new ClassMetadata('Test\Entity\Test');
+		$this->class_meta = new ClassMetadataInfo('Test\Entity\Test');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
 		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
@@ -59,7 +59,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 	 */
 	function testSelectArrayEntity() {
 
-		$this->class_meta = new ClassMetadata('Test\Entity\Test');
+		$this->class_meta = new ClassMetadataInfo('Test\Entity\Test');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
 		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
@@ -76,7 +76,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 	 */
 	function testJoinEntity() {
 
-		$this->class_meta = new ClassMetadata('Test\Entity\TestBla');
+		$this->class_meta = new ClassMetadataInfo('Test\Entity\TestBla');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
 		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
@@ -95,7 +95,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 	 */
 	function testJoinEntitySameAlias() {
 
-		$this->class_meta = new ClassMetadata('Test\Entity\TestBla');
+		$this->class_meta = new ClassMetadataInfo('Test\Entity\TestBla');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
 		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();
@@ -114,7 +114,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase {
 	 */
 	function testJoinArrayEntitySameAlias() {
 
-		$this->class_meta = new ClassMetadata('Test\Entity\TestBla');
+		$this->class_meta = new ClassMetadataInfo('Test\Entity\TestBla');
 		$this->class_meta->setPrimaryTable(array('name' => 'test'));
 
 		$this->em = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->disableOriginalConstructor()->getMock();

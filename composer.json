@@ -18,6 +18,9 @@
         "zendframework/zend-db": "2.*",
         "doctrine/doctrine-bundle": "*"
     },
+    "require-dev": {
+        "doctrine/orm": ">=2.2,<3.0,>=2.2.3"
+    },
     "autoload": {
         "psr-0": { "espend\\ZendDbBundle": "" }
     },
