@@ -112,7 +112,7 @@ $this->getZend()->fetchField($select); // return 1
 
 #### Update
 ``` php
-$update = $this->getZend()->getQueryBuilder()->update('opwocoApptitanCoreBundle:JobQueue');
+$update = $this->getZend()->getQueryBuilder()->update('espendHomeBundle:Homework');
 $update->set(array(
   'type' => 'todo',
 ));
@@ -124,7 +124,7 @@ $this->getZend()->execute($update);
 
 #### Insert
 ``` php
-$insert = $this->getZend()->getQueryBuilder()->insert('opwocoApptitanCoreBundle:JobQueue');
+$insert = $this->getZend()->getQueryBuilder()->insert('espendHomeBundle:Homework');
 $insert->values(array(
   'status' => 1,
   'type' => 'cleanup',

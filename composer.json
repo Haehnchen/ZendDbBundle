@@ -2,7 +2,7 @@
     "name": "espend/zend-db-bundle",
     "type": "symfony-bundle",
     "description": "Wraps ZendDb to Symfony2 and Doctrine",
-    "keywords": ["Database"],
+    "keywords": ["Database", "Symfony", "Doctrine", "Zend"],
     "homepage": "http://espend.de",
     "license": "MIT",
     "authors": [
